@@ -3,7 +3,8 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta HTTP-EQUIV="REFRESH" content="15">
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="expires" content="-1" />
 	<title>khaulah hotspot > login</title>
@@ -12,7 +13,6 @@
 </head>
 
 <body>
-
 	$(if chap-id)
 	<form name="sendin" action="$(link-login-only)" method="post">
 		<input type="hidden" name="username" />
@@ -22,6 +22,7 @@
 	</form>
 
 	<script type="text/javascript" src="/md5.js"></script>
+
 	<script type="text/javascript">
 		<!--
 		function doLogin() {
@@ -51,7 +52,7 @@
 							<div class="error">$(error)</div>
 							$(endif)
 							<div class="container-sm">
-								<input class="user" name="username" type="text" value="$(username)" />
+								<input class="user" name="username" type="text" value="$(username)" autofocus />
 							</div>
 							<div class="container-sm">
 								<input class="pass" name="password" type="password" />
@@ -64,14 +65,34 @@
 		</tr>
 
 	</table>
+	<script language="JavaScript">
+		function generate() {
 
-	<script type="text/javascript">
-		<!--
-		document.login.username.focus();
-		//
-		-->
+			var hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
+
+			function populate(a) {
+				for (var i = 0; i < 6; i++) {
+					var x = Math.round(Math.random() * 14);
+					var y = hexValues[x];
+					a += y;
+				}
+				return a;
+			}
+
+			var newColor1 = populate('#');
+			var newColor2 = populate('#');
+			var angle = Math.round(Math.random() * 360);
+
+			var gradient = "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
+
+			// document.getElementById("bg-gradien").style.background = gradient;
+			document.body.style.background = gradient;
+			document.getElementById("output").innerHTML = gradient;
+
+		}
+
+		document.onload = generate();
 	</script>
-
 </body>
 
 </html>
